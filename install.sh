@@ -53,28 +53,5 @@ if ! [ -f "/usr/bin/xcodebuild" ]; then
   exit 1
 fi
 
-while true; do
-  read -p "Do you want to install Hardware Security Module and Keys support for software signing (Yubico)? [y/n] " yn
-  case $yn in
-  [Yy]*)
-    installYubiSDK
-    break
-    ;;
-  [Nn]*) break ;;
-  *) echo "Please answer yes or no." ;;
-  esac
-done
-
-while true; do
-  read -p "Do you want to install PKCS11 library support for software signing with PKCS11-compatible hardware keys? [y/n] " yn
-  case $yn in
-  [Yy]*)
-    installPKCS11Support
-    break
-    ;;
-  [Nn]*) break ;;
-  *) echo "Please answer yes or no." ;;
-  esac
-done
 
 echo "Installation has been completed. Now you can use build.sh to build your IPA files. If you are using HSM from Yubico, make sure to start yubihsm-connector prior to signing"
