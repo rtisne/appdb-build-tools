@@ -36,8 +36,8 @@ if ! [ -f "/usr/bin/xcodebuild" ]; then
   exit 1
 fi
 
-if [[ "$1" != *\.xcodeproj && "$1" != *\.xcodeworkspace ]]; then
-  echo "ERROR: Specify path to .xcodeproj or .xcodeworkspace file in argv[1]" >&2
+if [[ "$1" != *\.xcodeproj && "$1" != *\.xcworkspace ]]; then
+  echo "ERROR: Specify path to .xcodeproj or .xcworkspace file in argv[1]" >&2
   exit 1
 fi
 
