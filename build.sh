@@ -13,39 +13,6 @@ HSM_PASSWORD=""
 HSM_KEY_URI=""
 HSM_CERT_URI=""
 
-if [[ $ASK_FOR_HSM ]]; then
-  while true; do
-    read -p "Use signing with HSM or hardware key [y/n] " yn
-    case $yn in
-    [Yy]*)
-      USE_HSM=1
-      if [[ "$HSM_PASSWORD" == "" ]]; then
-        read -p "Enter HSM password [0001password]: " HSM_PASSWORD
-        if [[ "$HSM_PASSWORD" == "" ]]; then
-          HSM_PASSWORD="0001password"
-        fi
-      fi
-      if [[ "$HSM_KEY_URI" == "" ]]; then
-        read -p "Enter HSM private key URI (use ./get_pkcs11_uris.sh to get it): " HSM_KEY_URI
-        if [[ "$HSM_KEY_URI" == "" ]]; then
-          echo "ERROR: HSM Key URI is required"
-          exit 1
-        fi
-      fi
-      if [[ "$HSM_CERT_URI" == "" ]]; then
-        read -p "Enter HSM certificate URI (use ./get_pkcs11_uris.sh to get it): " HSM_CERT_URI
-        if [[ "$HSM_CERT_URI" == "" ]]; then
-          echo "ERROR: HSM Certificate URI is required"
-          exit 1
-        fi
-      fi
-      break
-      ;;
-    [Nn]*) break ;;
-    *) echo "Please answer yes or no." ;;
-    esac
-  done
-fi
 
 function createmenu() {
   #echo "Size of entries: $#"
