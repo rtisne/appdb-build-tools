@@ -47,8 +47,6 @@ XCODE_BUILD_SCHEME=$2
 
 echo "Getting schemes from project"
 
-xcodebuild -project "$XCODE_PROJECT_FILE" -list
-
 if [[ "$XCODE_BUILD_SCHEME" == "" ]]; then
   read -p "Enter scheme to build: " XCODE_BUILD_SCHEME
 fi
@@ -71,7 +69,7 @@ echo "Building..."
 
 rm -Rf "$BUILD_ROOT_PATH/derivedData"
 
-xcodebuild -scheme "$XCODE_BUILD_SCHEME" -project "$XCODE_PROJECT_FILE" -configuration "$XCODE_BUILD_CONFIGURATION" -sdk iphoneos -destination 'generic/platform=iOS' -derivedDataPath "$BUILD_ROOT_PATH/derivedData" build CODE_SIGN_IDENTITY='' CODE_SIGNING_REQUIRED=NO CODE_SIGN_ENTITLEMENTS='' CODE_SIGNING_ALLOWED=NO
+xcodebuild -scheme "$XCODE_BUILD_SCHEME" -workspace "$XCODE_PROJECT_FILE" -configuration "$XCODE_BUILD_CONFIGURATION" -sdk iphoneos -destination 'generic/platform=iOS' -derivedDataPath "$BUILD_ROOT_PATH/derivedData" build CODE_SIGN_IDENTITY='' CODE_SIGNING_REQUIRED=NO CODE_SIGN_ENTITLEMENTS='' CODE_SIGNING_ALLOWED=NO
 
 if [ $? -eq 0 ]; then
   echo "Build OK!"
